@@ -1,0 +1,341 @@
+{
+  "caseId": "TC_REFUND_001",
+  "title": "退款申请成功",
+  "generatedAt": "2026-06-18T18:28:11+08:00",
+  "sourceText": "登录后进入订单列表，点击第一笔订单，点击申请退款，选择退款原因“买错了”，点击提交退款，验证订单进入退款审核中。\n",
+  "clauses": [
+    "登录",
+    "进入订单列表",
+    "点击第一笔订单",
+    "点击申请退款",
+    "选择退款原因“买错了”",
+    "点击提交退款",
+    "验证订单进入退款审核中"
+  ],
+  "intents": [
+    {
+      "action": "login",
+      "sourceText": "登录",
+      "targetText": "normal_user",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "navigate",
+      "sourceText": "进入订单列表",
+      "targetText": "进入订单列表",
+      "targetPage": "OrderListPage",
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "click",
+      "sourceText": "点击第一笔订单",
+      "targetText": "点击第一笔订单",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "click",
+      "sourceText": "点击申请退款",
+      "targetText": "点击申请退款",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "select",
+      "sourceText": "选择退款原因“买错了”",
+      "targetText": "选择退款原因“买错了”",
+      "targetPage": null,
+      "value": "买错了",
+      "expectation": null
+    },
+    {
+      "action": "click",
+      "sourceText": "点击提交退款",
+      "targetText": "点击提交退款",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "assert",
+      "sourceText": "验证订单进入退款审核中",
+      "targetText": "验证订单进入退款审核中",
+      "targetPage": null,
+      "value": null,
+      "expectation": "explicit_assertion_required"
+    }
+  ],
+  "intermediateRepresentation": {
+    "caseId": "TC_REFUND_001",
+    "title": "退款申请成功",
+    "sourceText": "登录后进入订单列表，点击第一笔订单，点击申请退款，选择退款原因“买错了”，点击提交退款，验证订单进入退款审核中。\n",
+    "preconditions": [
+      {
+        "type": "login",
+        "accountPool": "normal_user_pool",
+        "assert": {
+          "page": "HomePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "tab_home"
+          }
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepId": "S1",
+        "intent": "navigate",
+        "page": "HomePage",
+        "target": "OrderListEntry",
+        "targetName": "订单入口",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "entry_order_list"
+        },
+        "value": null,
+        "waitCondition": {
+          "page": "OrderListPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "order_item"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "进入订单列表"
+      },
+      {
+        "stepId": "S2",
+        "intent": "click",
+        "page": "OrderListPage",
+        "target": "OrderItem",
+        "targetName": "订单条目",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "order_item"
+        },
+        "value": null,
+        "waitCondition": {
+          "page": "OrderDetailPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_apply_refund"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "点击第一笔订单"
+      },
+      {
+        "stepId": "S3",
+        "intent": "click",
+        "page": "OrderDetailPage",
+        "target": "ApplyRefundButton",
+        "targetName": "申请退款按钮",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "btn_apply_refund"
+        },
+        "value": null,
+        "waitCondition": {
+          "page": "RefundPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_submit_refund"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "点击申请退款"
+      },
+      {
+        "stepId": "S4",
+        "intent": "select",
+        "page": "RefundPage",
+        "target": "RefundReasonSelector",
+        "targetName": "退款原因选择器",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "select_refund_reason"
+        },
+        "value": "买错了",
+        "waitCondition": null,
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "选择退款原因“买错了”"
+      },
+      {
+        "stepId": "S5",
+        "intent": "click",
+        "page": "RefundPage",
+        "target": "SubmitRefundButton",
+        "targetName": "提交退款按钮",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "btn_submit_refund"
+        },
+        "value": null,
+        "waitCondition": null,
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "点击提交退款"
+      }
+    ],
+    "assertions": [
+      {
+        "assertionId": "A1",
+        "page": "RefundPage",
+        "target": "RefundStatusLabel",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "label_refund_status"
+        },
+        "type": "visible",
+        "expected": true,
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证订单进入退款审核中"
+      }
+    ],
+    "riskFlags": []
+  },
+  "agentInput": {
+    "agentTaskId": "AGENT_TC_REFUND_001",
+    "name": "退款申请成功",
+    "environment": {
+      "platform": "android",
+      "app": "target_app",
+      "resetBeforeRun": false
+    },
+    "executionPolicy": {
+      "stepTimeoutMs": 10000,
+      "caseTimeoutMs": 60000,
+      "retry": {
+        "maxRetry": 1,
+        "retryOn": [
+          "ELEMENT_NOT_FOUND",
+          "PAGE_LOAD_TIMEOUT",
+          "AGENT_RUNTIME_ERROR"
+        ]
+      },
+      "evidence": [
+        "screenshot_on_each_step",
+        "ui_tree_on_failure",
+        "screen_record"
+      ]
+    },
+    "steps": [
+      {
+        "id": "S0",
+        "action": "login",
+        "using": "normal_user_pool",
+        "expect": {
+          "page": "HomePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "tab_home"
+          }
+        }
+      },
+      {
+        "id": "S1",
+        "action": "tap",
+        "sourceText": "进入订单列表",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "entry_order_list"
+        },
+        "expect": {
+          "page": "OrderListPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "order_item"
+          }
+        }
+      },
+      {
+        "id": "S2",
+        "action": "tap",
+        "sourceText": "点击第一笔订单",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "order_item"
+        },
+        "expect": {
+          "page": "OrderDetailPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_apply_refund"
+          }
+        }
+      },
+      {
+        "id": "S3",
+        "action": "tap",
+        "sourceText": "点击申请退款",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "btn_apply_refund"
+        },
+        "expect": {
+          "page": "RefundPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_submit_refund"
+          }
+        }
+      },
+      {
+        "id": "S4",
+        "action": "select",
+        "sourceText": "选择退款原因“买错了”",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "select_refund_reason"
+        },
+        "value": "买错了"
+      },
+      {
+        "id": "S5",
+        "action": "tap",
+        "sourceText": "点击提交退款",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "btn_submit_refund"
+        }
+      },
+      {
+        "id": "A1",
+        "action": "assert",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "label_refund_status"
+        },
+        "assertion": {
+          "type": "visible",
+          "expected": true
+        },
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证订单进入退款审核中"
+      }
+    ]
+  },
+  "summary": {
+    "intentCount": 7,
+    "irStepCount": 5,
+    "assertionCount": 1,
+    "riskCount": 0
+  },
+  "risks": []
+}

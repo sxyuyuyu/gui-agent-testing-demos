@@ -1,0 +1,327 @@
+{
+  "defaultStartPage": "HomePage",
+  "pages": {
+    "HomePage": {
+      "name": "首页",
+      "assertion": {
+        "page": "HomePage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "tab_home"
+        }
+      },
+      "controls": {
+        "HomeTab": {
+          "name": "首页 Tab",
+          "aliases": ["首页"],
+          "role": "tab",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "tab_home"
+          }
+        },
+        "ProfileTab": {
+          "name": "我的 Tab",
+          "aliases": ["我的", "我的页面", "个人中心"],
+          "role": "tab",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "tab_profile"
+          }
+        },
+        "CouponCenterEntry": {
+          "name": "优惠券中心入口",
+          "aliases": ["优惠券中心", "领券中心"],
+          "role": "entry",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "entry_coupon_center"
+          }
+        },
+        "OrderListEntry": {
+          "name": "订单入口",
+          "aliases": ["订单", "我的订单", "订单列表"],
+          "role": "entry",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "entry_order_list"
+          }
+        }
+      }
+    },
+    "ProfilePage": {
+      "name": "我的页",
+      "assertion": {
+        "page": "ProfilePage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "entry_settings"
+        }
+      },
+      "controls": {
+        "SettingsEntry": {
+          "name": "设置入口",
+          "aliases": ["设置", "设置入口"],
+          "role": "entry",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "entry_settings"
+          }
+        }
+      }
+    },
+    "SettingsPage": {
+      "name": "设置页",
+      "assertion": {
+        "page": "SettingsPage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "notification_switch"
+        }
+      },
+      "controls": {
+        "NotificationSwitch": {
+          "name": "通知开关",
+          "aliases": ["通知开关", "消息通知", "通知"],
+          "role": "switch",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "notification_switch"
+          }
+        },
+        "SaveButton": {
+          "name": "保存按钮",
+          "aliases": ["保存", "保存设置"],
+          "role": "button",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "btn_save_settings"
+          }
+        }
+      }
+    },
+    "CouponCenterPage": {
+      "name": "优惠券中心",
+      "assertion": {
+        "page": "CouponCenterPage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "btn_receive_coupon"
+        }
+      },
+      "controls": {
+        "ReceiveCouponButton": {
+          "name": "立即领取按钮",
+          "aliases": ["立即领取", "领取", "领券"],
+          "role": "button",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "btn_receive_coupon"
+          }
+        },
+        "CouponCard": {
+          "name": "优惠券卡片",
+          "aliases": ["优惠券", "优惠券卡片", "可领取优惠券"],
+          "role": "card",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "coupon_card"
+          }
+        }
+      }
+    },
+    "OrderListPage": {
+      "name": "订单列表",
+      "assertion": {
+        "page": "OrderListPage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "order_item"
+        }
+      },
+      "controls": {
+        "OrderItem": {
+          "name": "订单条目",
+          "aliases": ["订单", "第一笔订单", "已支付订单"],
+          "role": "list_item",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "order_item"
+          }
+        }
+      }
+    },
+    "OrderDetailPage": {
+      "name": "订单详情页",
+      "assertion": {
+        "page": "OrderDetailPage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "btn_apply_refund"
+        }
+      },
+      "controls": {
+        "ApplyRefundButton": {
+          "name": "申请退款按钮",
+          "aliases": ["申请退款", "退款"],
+          "role": "button",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "btn_apply_refund"
+          }
+        }
+      }
+    },
+    "RefundPage": {
+      "name": "退款申请页",
+      "assertion": {
+        "page": "RefundPage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "btn_submit_refund"
+        }
+      },
+      "controls": {
+        "RefundReasonSelector": {
+          "name": "退款原因选择器",
+          "aliases": ["退款原因", "选择退款原因"],
+          "role": "select",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "select_refund_reason"
+          }
+        },
+        "SubmitRefundButton": {
+          "name": "提交退款按钮",
+          "aliases": ["提交", "提交退款"],
+          "role": "button",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "btn_submit_refund"
+          }
+        },
+        "RefundStatusLabel": {
+          "name": "退款状态",
+          "aliases": ["退款审核中", "订单状态", "退款状态"],
+          "role": "label",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "label_refund_status"
+          }
+        }
+      }
+    },
+    "LoginPage": {
+      "name": "登录页",
+      "assertion": {
+        "page": "LoginPage",
+        "visible": {
+          "strategy": "accessibility_id",
+          "value": "btn_login"
+        }
+      },
+      "controls": {
+        "PhoneInput": {
+          "name": "手机号输入框",
+          "aliases": ["手机号", "手机号码"],
+          "role": "input",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "input_phone"
+          }
+        },
+        "PasswordInput": {
+          "name": "密码输入框",
+          "aliases": ["密码"],
+          "role": "input",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "input_password"
+          }
+        },
+        "LoginButton": {
+          "name": "登录按钮",
+          "aliases": ["登录按钮", "点击登录"],
+          "role": "button",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "btn_login"
+          }
+        },
+        "CaptchaImage": {
+          "name": "图形验证码",
+          "aliases": ["图形验证码", "验证码"],
+          "role": "image",
+          "locator": {
+            "strategy": "accessibility_id",
+            "value": "captcha_image"
+          }
+        }
+      }
+    }
+  },
+  "aliases": {
+    "pages": {
+      "首页": "HomePage",
+      "我的": "ProfilePage",
+      "我的页面": "ProfilePage",
+      "个人中心": "ProfilePage",
+      "设置": "SettingsPage",
+      "设置页": "SettingsPage",
+      "优惠券中心": "CouponCenterPage",
+      "领券中心": "CouponCenterPage",
+      "订单列表": "OrderListPage",
+      "订单详情": "OrderDetailPage",
+      "订单详情页": "OrderDetailPage",
+      "退款申请页": "RefundPage",
+      "登录页": "LoginPage"
+    }
+  },
+  "transitions": [
+    {
+      "from": "HomePage",
+      "to": "ProfilePage",
+      "via": "ProfileTab",
+      "action": "tap"
+    },
+    {
+      "from": "ProfilePage",
+      "to": "SettingsPage",
+      "via": "SettingsEntry",
+      "action": "tap"
+    },
+    {
+      "from": "HomePage",
+      "to": "CouponCenterPage",
+      "via": "CouponCenterEntry",
+      "action": "tap"
+    },
+    {
+      "from": "HomePage",
+      "to": "OrderListPage",
+      "via": "OrderListEntry",
+      "action": "tap"
+    },
+    {
+      "from": "OrderListPage",
+      "to": "OrderDetailPage",
+      "via": "OrderItem",
+      "action": "tap"
+    },
+    {
+      "from": "OrderDetailPage",
+      "to": "RefundPage",
+      "via": "ApplyRefundButton",
+      "action": "tap"
+    }
+  ],
+  "backMap": {
+    "SettingsPage": "ProfilePage",
+    "ProfilePage": "HomePage",
+    "CouponCenterPage": "HomePage",
+    "RefundPage": "OrderDetailPage",
+    "OrderDetailPage": "OrderListPage",
+    "OrderListPage": "HomePage",
+    "LoginPage": "HomePage"
+  }
+}

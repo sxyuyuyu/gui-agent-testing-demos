@@ -1,0 +1,649 @@
+{
+  "prdId": "PRD_NOTIFICATION_001",
+  "title": "消息通知设置",
+  "generatedAt": "2026-06-18T17:52:11+08:00",
+  "summary": {
+    "featureCount": 5,
+    "testPointCount": 6,
+    "knowledgeHitCount": 8,
+    "riskCount": 0
+  },
+  "requirementModel": {
+    "prdId": "PRD_NOTIFICATION_001",
+    "title": "消息通知设置",
+    "rawText": "功能：消息通知设置\n\n背景：\n用户可以在设置页管理站内信、短信、Push 三类通知开关。系统需要保证用户设置可以保存、生效和跨端同步。\n\n功能说明：\n1. 用户进入设置页，打开或关闭站内信通知、短信通知、Push 通知。\n2. 用户关闭某类通知后，系统不再发送对应渠道通知。\n3. 用户重新打开通知后，系统恢复发送对应渠道通知。\n4. 通知开关状态需要保存，并在用户重新进入设置页后保持一致。\n5. 用户在 A 设备修改通知设置后，B 设备重新进入设置页应展示最新状态。\n6. 未登录用户进入设置页时，应引导登录。\n\n边界条件：\n1. 三类通知开关可以独立控制。\n2. 同时关闭全部通知时，业务重要消息仍需要保留站内信兜底。\n3. Push 通知依赖系统权限，系统权限关闭时，页面应展示权限引导。\n\n异常场景：\n1. 保存通知设置接口失败时，页面应提示失败且状态回滚。\n2. 用户快速连续切换开关时，最终状态应以最后一次操作为准。\n3. 多端同时修改通知设置时，需要按照最后更新时间生效。\n\n预期结果：\n系统能够正确保存通知设置、处理接口失败、跨端同步状态，并保证通知发送策略与用户设置一致。",
+    "sections": [
+      {
+        "sectionId": "S1",
+        "title": "需求片段 1",
+        "text": "功能：消息通知设置"
+      },
+      {
+        "sectionId": "S2",
+        "title": "需求片段 2",
+        "text": "背景："
+      },
+      {
+        "sectionId": "S3",
+        "title": "需求片段 3",
+        "text": "用户可以在设置页管理站内信、短信、Push 三类通知开关"
+      },
+      {
+        "sectionId": "S4",
+        "title": "需求片段 4",
+        "text": "系统需要保证用户设置可以保存、生效和跨端同步"
+      },
+      {
+        "sectionId": "S5",
+        "title": "需求片段 5",
+        "text": "功能说明："
+      },
+      {
+        "sectionId": "S6",
+        "title": "需求片段 6",
+        "text": "1. 用户进入设置页，打开或关闭站内信通知、短信通知、Push 通知"
+      },
+      {
+        "sectionId": "S7",
+        "title": "需求片段 7",
+        "text": "2. 用户关闭某类通知后，系统不再发送对应渠道通知"
+      },
+      {
+        "sectionId": "S8",
+        "title": "需求片段 8",
+        "text": "3. 用户重新打开通知后，系统恢复发送对应渠道通知"
+      },
+      {
+        "sectionId": "S9",
+        "title": "需求片段 9",
+        "text": "4. 通知开关状态需要保存，并在用户重新进入设置页后保持一致"
+      },
+      {
+        "sectionId": "S10",
+        "title": "需求片段 10",
+        "text": "5. 用户在 A 设备修改通知设置后，B 设备重新进入设置页应展示最新状态"
+      },
+      {
+        "sectionId": "S11",
+        "title": "需求片段 11",
+        "text": "6. 未登录用户进入设置页时，应引导登录"
+      },
+      {
+        "sectionId": "S12",
+        "title": "需求片段 12",
+        "text": "边界条件："
+      },
+      {
+        "sectionId": "S13",
+        "title": "需求片段 13",
+        "text": "1. 三类通知开关可以独立控制"
+      },
+      {
+        "sectionId": "S14",
+        "title": "需求片段 14",
+        "text": "2. 同时关闭全部通知时，业务重要消息仍需要保留站内信兜底"
+      },
+      {
+        "sectionId": "S15",
+        "title": "需求片段 15",
+        "text": "3. Push 通知依赖系统权限，系统权限关闭时，页面应展示权限引导"
+      },
+      {
+        "sectionId": "S16",
+        "title": "需求片段 16",
+        "text": "异常场景："
+      },
+      {
+        "sectionId": "S17",
+        "title": "需求片段 17",
+        "text": "1. 保存通知设置接口失败时，页面应提示失败且状态回滚"
+      },
+      {
+        "sectionId": "S18",
+        "title": "需求片段 18",
+        "text": "2. 用户快速连续切换开关时，最终状态应以最后一次操作为准"
+      },
+      {
+        "sectionId": "S19",
+        "title": "需求片段 19",
+        "text": "3. 多端同时修改通知设置时，需要按照最后更新时间生效"
+      },
+      {
+        "sectionId": "S20",
+        "title": "需求片段 20",
+        "text": "预期结果："
+      },
+      {
+        "sectionId": "S21",
+        "title": "需求片段 21",
+        "text": "系统能够正确保存通知设置、处理接口失败、跨端同步状态，并保证通知发送策略与用户设置一致"
+      }
+    ],
+    "features": [
+      "账号登录",
+      "通知设置",
+      "通知渠道开关",
+      "通知跨端同步",
+      "系统权限引导"
+    ],
+    "entities": [
+      "用户",
+      "设置页",
+      "通知渠道"
+    ],
+    "rules": [
+      "系统需要保证用户设置可以保存、生效和跨端同步",
+      "2. 用户关闭某类通知后，系统不再发送对应渠道通知",
+      "4. 通知开关状态需要保存，并在用户重新进入设置页后保持一致",
+      "2. 同时关闭全部通知时，业务重要消息仍需要保留站内信兜底",
+      "3. 多端同时修改通知设置时，需要按照最后更新时间生效",
+      "系统能够正确保存通知设置、处理接口失败、跨端同步状态，并保证通知发送策略与用户设置一致"
+    ],
+    "boundaries": [],
+    "exceptions": [
+      "接口失败",
+      "系统权限关闭"
+    ],
+    "keywords": [
+      "设置页",
+      "边界",
+      "异常",
+      "权限",
+      "登录",
+      "消息通知",
+      "通知设置",
+      "站内信",
+      "短信",
+      "Push",
+      "开关状态",
+      "跨端同步",
+      "系统权限",
+      "账号登录",
+      "通知渠道开关",
+      "通知跨端同步",
+      "系统权限引导",
+      "接口失败",
+      "系统权限关闭"
+    ],
+    "expandedKeywords": [
+      "通知开关",
+      "消息设置",
+      "状态保存",
+      "密码登录",
+      "异常登录",
+      "撞库防护",
+      "多端一致性",
+      "最后写入生效"
+    ]
+  },
+  "retrievedKnowledge": [
+    {
+      "docId": "BUG_NOTIFY_015",
+      "source": "历史缺陷库",
+      "title": "多端修改通知设置后状态不同步",
+      "score": 0.776,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.5744,
+        "defect": 1.0,
+        "rule": 0.25
+      },
+      "matchedKeywords": [
+        "设置页",
+        "通知设置",
+        "Push",
+        "跨端同步",
+        "最后写入生效"
+      ],
+      "usableKnowledge": "多端同时修改通知设置时，需要按最后更新时间生效并刷新展示",
+      "testAngles": [
+        "跨端同步",
+        "状态一致性",
+        "最后写入生效"
+      ]
+    },
+    {
+      "docId": "BUG_NOTIFY_006",
+      "source": "历史缺陷库",
+      "title": "接口失败后通知开关 UI 未回滚",
+      "score": 0.7643,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.4695,
+        "defect": 1.0,
+        "rule": 0.5
+      },
+      "matchedKeywords": [
+        "异常",
+        "通知设置",
+        "开关状态",
+        "接口失败",
+        "通知开关"
+      ],
+      "usableKnowledge": "保存失败时页面必须提示失败并回滚到真实状态",
+      "testAngles": [
+        "异常恢复",
+        "UI 回滚",
+        "前后端一致性"
+      ]
+    },
+    {
+      "docId": "RULE_NOTIFICATION_CHANNEL_001",
+      "source": "业务规则库",
+      "title": "通知渠道与重要消息兜底",
+      "score": 0.5817,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.4477,
+        "defect": 0.0,
+        "rule": 0.75
+      },
+      "matchedKeywords": [
+        "权限",
+        "通知设置",
+        "站内信",
+        "短信",
+        "Push",
+        "系统权限",
+        "系统权限引导",
+        "系统权限关闭"
+      ],
+      "usableKnowledge": "通知设置需要覆盖渠道独立控制、重要消息兜底和系统权限引导",
+      "testAngles": [
+        "渠道隔离",
+        "权限引导",
+        "兜底策略"
+      ]
+    },
+    {
+      "docId": "CASE_NOTIFICATION_001",
+      "source": "历史测试用例库",
+      "title": "消息通知设置保存与生效",
+      "score": 0.5504,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.501,
+        "defect": 0.0,
+        "rule": 0.25
+      },
+      "matchedKeywords": [
+        "消息通知",
+        "通知设置",
+        "站内信",
+        "短信",
+        "Push",
+        "开关状态"
+      ],
+      "usableKnowledge": "通知设置需要验证开关保存、状态保留、渠道发送策略和重新打开",
+      "testAngles": [
+        "设置保存",
+        "状态保留",
+        "发送策略",
+        "渠道隔离"
+      ]
+    },
+    {
+      "docId": "RULE_BOUNDARY_TIME_003",
+      "source": "边界值规则库",
+      "title": "时间边界测试设计",
+      "score": 0.5409,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.5455,
+        "defect": 0.0,
+        "rule": 0.0
+      },
+      "matchedKeywords": [
+        "边界"
+      ],
+      "usableKnowledge": "时间类规则需要覆盖边界前、边界点、边界后",
+      "testAngles": [
+        "边界值",
+        "时间模拟",
+        "任务触发"
+      ]
+    },
+    {
+      "docId": "BUG_LOGIN_018",
+      "source": "历史缺陷库",
+      "title": "多端登录错误次数未一致累计",
+      "score": 0.5245,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.27,
+        "defect": 0.4,
+        "rule": 0.0
+      },
+      "matchedKeywords": [
+        "登录",
+        "多端一致性"
+      ],
+      "usableKnowledge": "登录错误次数必须按账号维度累计，不能按设备割裂",
+      "testAngles": [
+        "多端一致性",
+        "账号维度",
+        "安全"
+      ]
+    },
+    {
+      "docId": "BUG_LOGIN_011",
+      "source": "历史缺陷库",
+      "title": "第 3 次密码错误未展示图形验证码",
+      "score": 0.4894,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.1698,
+        "defect": 0.4,
+        "rule": 0.0
+      },
+      "matchedKeywords": [
+        "边界",
+        "登录"
+      ],
+      "usableKnowledge": "密码错误次数阈值必须覆盖第 2 次、第 3 次、第 5 次",
+      "testAngles": [
+        "次数边界",
+        "安全",
+        "验证码"
+      ]
+    },
+    {
+      "docId": "CASE_LOGIN_RISK_001",
+      "source": "历史测试用例库",
+      "title": "登录风控验证码与账号锁定",
+      "score": 0.4434,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.267,
+        "defect": 0.0,
+        "rule": 0.0
+      },
+      "matchedKeywords": [
+        "登录",
+        "短信"
+      ],
+      "usableKnowledge": "登录风控需要验证错误次数阈值、验证码、锁定时长和成功后状态清零",
+      "testAngles": [
+        "安全",
+        "验证码",
+        "账号锁定",
+        "状态恢复"
+      ]
+    }
+  ],
+  "testPoints": [
+    {
+      "id": "TP_001",
+      "title": "用户输入正确手机号和密码可登录成功",
+      "type": "functional",
+      "priority": "P0",
+      "feature": "账号登录",
+      "requirementRef": {
+        "sectionId": "S11",
+        "text": "6. 未登录用户进入设置页时，应引导登录"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        },
+        {
+          "docId": "BUG_LOGIN_011",
+          "source": "历史缺陷库",
+          "reason": "密码错误次数阈值必须覆盖第 2 次、第 3 次、第 5 次"
+        }
+      ],
+      "preconditions": [
+        "账号未锁定",
+        "密码正确"
+      ],
+      "steps": [
+        "输入手机号和密码",
+        "点击登录",
+        "查看登录结果"
+      ],
+      "expectedResults": [
+        "登录成功",
+        "进入首页",
+        "密码错误次数清零"
+      ],
+      "testData": [
+        "正常账号"
+      ],
+      "tags": [
+        "登录",
+        "正向",
+        "状态清零"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "TP_002",
+      "title": "用户修改通知开关后状态可保存并重新进入保持一致",
+      "type": "functional",
+      "priority": "P0",
+      "feature": "通知设置",
+      "requirementRef": {
+        "sectionId": "S1",
+        "text": "功能：消息通知设置"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_NOTIFY_015",
+          "source": "历史缺陷库",
+          "reason": "多端同时修改通知设置时，需要按最后更新时间生效并刷新展示"
+        },
+        {
+          "docId": "BUG_NOTIFY_006",
+          "source": "历史缺陷库",
+          "reason": "保存失败时页面必须提示失败并回滚到真实状态"
+        }
+      ],
+      "preconditions": [
+        "用户已登录",
+        "进入设置页"
+      ],
+      "steps": [
+        "关闭某类通知开关",
+        "退出设置页后重新进入",
+        "重新打开通知开关",
+        "再次查看状态"
+      ],
+      "expectedResults": [
+        "关闭后状态保存",
+        "重新进入后状态一致",
+        "重新打开后恢复发送策略"
+      ],
+      "testData": [
+        "普通用户"
+      ],
+      "tags": [
+        "通知设置",
+        "状态保留"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "id": "TP_003",
+      "title": "保存通知设置接口失败时页面提示失败并回滚",
+      "type": "exception",
+      "priority": "P0",
+      "feature": "通知设置",
+      "requirementRef": {
+        "sectionId": "S1",
+        "text": "功能：消息通知设置"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_NOTIFY_015",
+          "source": "历史缺陷库",
+          "reason": "多端同时修改通知设置时，需要按最后更新时间生效并刷新展示"
+        },
+        {
+          "docId": "BUG_NOTIFY_006",
+          "source": "历史缺陷库",
+          "reason": "保存失败时页面必须提示失败并回滚到真实状态"
+        }
+      ],
+      "preconditions": [
+        "用户已进入设置页",
+        "模拟保存接口失败"
+      ],
+      "steps": [
+        "切换通知开关",
+        "触发保存接口失败",
+        "查看页面状态和后台状态"
+      ],
+      "expectedResults": [
+        "页面提示保存失败",
+        "开关状态回滚到真实状态",
+        "前后端状态一致"
+      ],
+      "testData": [
+        "接口失败 mock"
+      ],
+      "tags": [
+        "异常恢复",
+        "状态回滚"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "TP_004",
+      "title": "站内信、短信、Push 三类通知可独立控制",
+      "type": "functional",
+      "priority": "P0",
+      "feature": "通知渠道开关",
+      "requirementRef": {
+        "sectionId": "S3",
+        "text": "用户可以在设置页管理站内信、短信、Push 三类通知开关"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        },
+        {
+          "docId": "BUG_LOGIN_011",
+          "source": "历史缺陷库",
+          "reason": "密码错误次数阈值必须覆盖第 2 次、第 3 次、第 5 次"
+        }
+      ],
+      "preconditions": [
+        "用户已登录",
+        "三类通知默认开启"
+      ],
+      "steps": [
+        "分别关闭站内信、短信、Push",
+        "触发对应业务通知",
+        "查看各渠道触达情况"
+      ],
+      "expectedResults": [
+        "各渠道独立生效",
+        "关闭渠道不再发送",
+        "未关闭渠道正常发送"
+      ],
+      "testData": [
+        "通知触发事件"
+      ],
+      "tags": [
+        "渠道隔离",
+        "通知发送"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "id": "TP_005",
+      "title": "A 设备修改通知设置后 B 设备展示最新状态",
+      "type": "state_transition",
+      "priority": "P1",
+      "feature": "通知跨端同步",
+      "requirementRef": {
+        "sectionId": "S4",
+        "text": "系统需要保证用户设置可以保存、生效和跨端同步"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        },
+        {
+          "docId": "BUG_LOGIN_011",
+          "source": "历史缺陷库",
+          "reason": "密码错误次数阈值必须覆盖第 2 次、第 3 次、第 5 次"
+        }
+      ],
+      "preconditions": [
+        "同一账号登录 A、B 两台设备"
+      ],
+      "steps": [
+        "A 设备修改通知设置",
+        "B 设备重新进入设置页",
+        "多端同时修改通知设置"
+      ],
+      "expectedResults": [
+        "B 设备展示 A 设备最新设置",
+        "多端同时修改时按最后更新时间生效",
+        "后台状态一致"
+      ],
+      "testData": [
+        "同一账号双设备"
+      ],
+      "tags": [
+        "跨端同步",
+        "状态一致"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "TP_006",
+      "title": "系统 Push 权限关闭时页面展示权限引导",
+      "type": "permission",
+      "priority": "P1",
+      "feature": "系统权限引导",
+      "requirementRef": {
+        "sectionId": "S15",
+        "text": "3. Push 通知依赖系统权限，系统权限关闭时，页面应展示权限引导"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "RULE_NOTIFICATION_CHANNEL_001",
+          "source": "业务规则库",
+          "reason": "通知设置需要覆盖渠道独立控制、重要消息兜底和系统权限引导"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "系统 Push 权限关闭",
+        "用户已登录"
+      ],
+      "steps": [
+        "进入通知设置页",
+        "查看 Push 开关区域",
+        "点击权限引导"
+      ],
+      "expectedResults": [
+        "页面提示系统权限关闭",
+        "展示开启权限引导",
+        "不误判为业务开关保存失败"
+      ],
+      "testData": [
+        "关闭系统权限设备"
+      ],
+      "tags": [
+        "权限",
+        "Push",
+        "引导"
+      ],
+      "confidence": 0.88
+    }
+  ],
+  "risks": []
+}

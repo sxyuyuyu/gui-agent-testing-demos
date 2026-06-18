@@ -1,0 +1,212 @@
+{
+  "caseId": "TC_COUPON_001",
+  "title": "优惠券领取成功",
+  "generatedAt": "2026-06-18T18:28:11+08:00",
+  "sourceText": "登录后进入优惠券中心，点击立即领取，验证优惠券领取成功并展示在优惠券卡片中。\n",
+  "clauses": [
+    "登录",
+    "进入优惠券中心",
+    "点击立即领取",
+    "验证优惠券领取成功并展示在优惠券卡片中"
+  ],
+  "intents": [
+    {
+      "action": "login",
+      "sourceText": "登录",
+      "targetText": "normal_user",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "navigate",
+      "sourceText": "进入优惠券中心",
+      "targetText": "进入优惠券中心",
+      "targetPage": "CouponCenterPage",
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "click",
+      "sourceText": "点击立即领取",
+      "targetText": "点击立即领取",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "assert",
+      "sourceText": "验证优惠券领取成功并展示在优惠券卡片中",
+      "targetText": "验证优惠券领取成功并展示在优惠券卡片中",
+      "targetPage": null,
+      "value": null,
+      "expectation": "visible_or_success"
+    }
+  ],
+  "intermediateRepresentation": {
+    "caseId": "TC_COUPON_001",
+    "title": "优惠券领取成功",
+    "sourceText": "登录后进入优惠券中心，点击立即领取，验证优惠券领取成功并展示在优惠券卡片中。\n",
+    "preconditions": [
+      {
+        "type": "login",
+        "accountPool": "normal_user_pool",
+        "assert": {
+          "page": "HomePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "tab_home"
+          }
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepId": "S1",
+        "intent": "navigate",
+        "page": "HomePage",
+        "target": "CouponCenterEntry",
+        "targetName": "优惠券中心入口",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "entry_coupon_center"
+        },
+        "value": null,
+        "waitCondition": {
+          "page": "CouponCenterPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_receive_coupon"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "进入优惠券中心"
+      },
+      {
+        "stepId": "S2",
+        "intent": "click",
+        "page": "CouponCenterPage",
+        "target": "ReceiveCouponButton",
+        "targetName": "立即领取按钮",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "btn_receive_coupon"
+        },
+        "value": null,
+        "waitCondition": null,
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "点击立即领取"
+      }
+    ],
+    "assertions": [
+      {
+        "assertionId": "A1",
+        "page": "CouponCenterPage",
+        "target": "CouponCard",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "coupon_card"
+        },
+        "type": "visible",
+        "expected": true,
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证优惠券领取成功并展示在优惠券卡片中"
+      }
+    ],
+    "riskFlags": []
+  },
+  "agentInput": {
+    "agentTaskId": "AGENT_TC_COUPON_001",
+    "name": "优惠券领取成功",
+    "environment": {
+      "platform": "android",
+      "app": "target_app",
+      "resetBeforeRun": false
+    },
+    "executionPolicy": {
+      "stepTimeoutMs": 10000,
+      "caseTimeoutMs": 60000,
+      "retry": {
+        "maxRetry": 1,
+        "retryOn": [
+          "ELEMENT_NOT_FOUND",
+          "PAGE_LOAD_TIMEOUT",
+          "AGENT_RUNTIME_ERROR"
+        ]
+      },
+      "evidence": [
+        "screenshot_on_each_step",
+        "ui_tree_on_failure",
+        "screen_record"
+      ]
+    },
+    "steps": [
+      {
+        "id": "S0",
+        "action": "login",
+        "using": "normal_user_pool",
+        "expect": {
+          "page": "HomePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "tab_home"
+          }
+        }
+      },
+      {
+        "id": "S1",
+        "action": "tap",
+        "sourceText": "进入优惠券中心",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "entry_coupon_center"
+        },
+        "expect": {
+          "page": "CouponCenterPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_receive_coupon"
+          }
+        }
+      },
+      {
+        "id": "S2",
+        "action": "tap",
+        "sourceText": "点击立即领取",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "btn_receive_coupon"
+        }
+      },
+      {
+        "id": "A1",
+        "action": "assert",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "coupon_card"
+        },
+        "assertion": {
+          "type": "visible",
+          "expected": true
+        },
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证优惠券领取成功并展示在优惠券卡片中"
+      }
+    ]
+  },
+  "summary": {
+    "intentCount": 4,
+    "irStepCount": 2,
+    "assertionCount": 1,
+    "riskCount": 0
+  },
+  "risks": []
+}

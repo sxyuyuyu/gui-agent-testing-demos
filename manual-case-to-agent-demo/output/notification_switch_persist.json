@@ -1,0 +1,354 @@
+{
+  "caseId": "TC_PROFILE_SETTING_001",
+  "title": "关闭通知开关后状态保留",
+  "generatedAt": "2026-06-18T18:28:11+08:00",
+  "sourceText": "登录后进入“我的”页面，点击“设置”，关闭通知开关，返回“我的”页面，再次点击“设置”，验证开关状态保留。\n",
+  "clauses": [
+    "登录",
+    "进入“我的”页面",
+    "点击“设置”",
+    "关闭通知开关",
+    "返回“我的”页面",
+    "次点击“设置”",
+    "验证开关状态保留"
+  ],
+  "intents": [
+    {
+      "action": "login",
+      "sourceText": "登录",
+      "targetText": "normal_user",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "navigate",
+      "sourceText": "进入“我的”页面",
+      "targetText": "进入“我的”页面",
+      "targetPage": "ProfilePage",
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "click",
+      "sourceText": "点击“设置”",
+      "targetText": "点击“设置”",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "switch",
+      "sourceText": "关闭通知开关",
+      "targetText": "关闭通知开关",
+      "targetPage": null,
+      "value": false,
+      "expectation": null
+    },
+    {
+      "action": "back",
+      "sourceText": "返回“我的”页面",
+      "targetText": "",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "click",
+      "sourceText": "次点击“设置”",
+      "targetText": "次点击“设置”",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "assert",
+      "sourceText": "验证开关状态保留",
+      "targetText": "验证开关状态保留",
+      "targetPage": null,
+      "value": null,
+      "expectation": "state_persisted"
+    }
+  ],
+  "intermediateRepresentation": {
+    "caseId": "TC_PROFILE_SETTING_001",
+    "title": "关闭通知开关后状态保留",
+    "sourceText": "登录后进入“我的”页面，点击“设置”，关闭通知开关，返回“我的”页面，再次点击“设置”，验证开关状态保留。\n",
+    "preconditions": [
+      {
+        "type": "login",
+        "accountPool": "normal_user_pool",
+        "assert": {
+          "page": "HomePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "tab_home"
+          }
+        }
+      }
+    ],
+    "steps": [
+      {
+        "stepId": "S1",
+        "intent": "navigate",
+        "page": "HomePage",
+        "target": "ProfileTab",
+        "targetName": "我的 Tab",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "tab_profile"
+        },
+        "value": null,
+        "waitCondition": {
+          "page": "ProfilePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "entry_settings"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "进入“我的”页面"
+      },
+      {
+        "stepId": "S2",
+        "intent": "click",
+        "page": "ProfilePage",
+        "target": "SettingsEntry",
+        "targetName": "设置入口",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "entry_settings"
+        },
+        "value": null,
+        "waitCondition": {
+          "page": "SettingsPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "notification_switch"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "点击“设置”"
+      },
+      {
+        "stepId": "S3",
+        "intent": "switch",
+        "page": "SettingsPage",
+        "target": "NotificationSwitch",
+        "targetName": "通知开关",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "notification_switch"
+        },
+        "value": false,
+        "waitCondition": null,
+        "postAssert": {
+          "type": "state_equals",
+          "expected": false
+        },
+        "timeout": 10000,
+        "sourceText": "关闭通知开关"
+      },
+      {
+        "stepId": "S4",
+        "intent": "back",
+        "page": "SettingsPage",
+        "target": null,
+        "targetName": null,
+        "locator": null,
+        "value": null,
+        "waitCondition": {
+          "page": "ProfilePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "entry_settings"
+          }
+        },
+        "postAssert": null,
+        "timeout": 5000,
+        "sourceText": "返回“我的”页面"
+      },
+      {
+        "stepId": "S5",
+        "intent": "click",
+        "page": "ProfilePage",
+        "target": "SettingsEntry",
+        "targetName": "设置入口",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "entry_settings"
+        },
+        "value": null,
+        "waitCondition": {
+          "page": "SettingsPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "notification_switch"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "次点击“设置”"
+      }
+    ],
+    "assertions": [
+      {
+        "assertionId": "A1",
+        "page": "SettingsPage",
+        "target": "NotificationSwitch",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "notification_switch"
+        },
+        "type": "state_equals",
+        "expected": false,
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证开关状态保留"
+      }
+    ],
+    "riskFlags": []
+  },
+  "agentInput": {
+    "agentTaskId": "AGENT_TC_PROFILE_SETTING_001",
+    "name": "关闭通知开关后状态保留",
+    "environment": {
+      "platform": "android",
+      "app": "target_app",
+      "resetBeforeRun": false
+    },
+    "executionPolicy": {
+      "stepTimeoutMs": 10000,
+      "caseTimeoutMs": 60000,
+      "retry": {
+        "maxRetry": 1,
+        "retryOn": [
+          "ELEMENT_NOT_FOUND",
+          "PAGE_LOAD_TIMEOUT",
+          "AGENT_RUNTIME_ERROR"
+        ]
+      },
+      "evidence": [
+        "screenshot_on_each_step",
+        "ui_tree_on_failure",
+        "screen_record"
+      ]
+    },
+    "steps": [
+      {
+        "id": "S0",
+        "action": "login",
+        "using": "normal_user_pool",
+        "expect": {
+          "page": "HomePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "tab_home"
+          }
+        }
+      },
+      {
+        "id": "S1",
+        "action": "tap",
+        "sourceText": "进入“我的”页面",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "tab_profile"
+        },
+        "expect": {
+          "page": "ProfilePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "entry_settings"
+          }
+        }
+      },
+      {
+        "id": "S2",
+        "action": "tap",
+        "sourceText": "点击“设置”",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "entry_settings"
+        },
+        "expect": {
+          "page": "SettingsPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "notification_switch"
+          }
+        }
+      },
+      {
+        "id": "S3",
+        "action": "set_switch",
+        "sourceText": "关闭通知开关",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "notification_switch"
+        },
+        "value": false,
+        "postAssert": {
+          "type": "state_equals",
+          "expected": false
+        }
+      },
+      {
+        "id": "S4",
+        "action": "back",
+        "sourceText": "返回“我的”页面",
+        "expect": {
+          "page": "ProfilePage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "entry_settings"
+          }
+        }
+      },
+      {
+        "id": "S5",
+        "action": "tap",
+        "sourceText": "次点击“设置”",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "entry_settings"
+        },
+        "expect": {
+          "page": "SettingsPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "notification_switch"
+          }
+        }
+      },
+      {
+        "id": "A1",
+        "action": "assert",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "notification_switch"
+        },
+        "assertion": {
+          "type": "state_equals",
+          "expected": false
+        },
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证开关状态保留"
+      }
+    ]
+  },
+  "summary": {
+    "intentCount": 7,
+    "irStepCount": 5,
+    "assertionCount": 1,
+    "riskCount": 0
+  },
+  "risks": []
+}

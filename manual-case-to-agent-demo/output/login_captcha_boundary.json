@@ -1,0 +1,242 @@
+{
+  "caseId": "TC_LOGIN_001",
+  "title": "登录验证码边界",
+  "generatedAt": "2026-06-18T18:28:11+08:00",
+  "sourceText": "进入登录页，输入手机号“13800000000”，输入密码“wrong_password”，点击登录按钮，验证第 3 次密码错误后展示图形验证码。\n",
+  "clauses": [
+    "进入登录页",
+    "输入手机号“13800000000”",
+    "输入密码“wrong_password”",
+    "点击登录按钮",
+    "验证第 3 次密码错误后展示图形验证码"
+  ],
+  "intents": [
+    {
+      "action": "navigate",
+      "sourceText": "进入登录页",
+      "targetText": "进入登录页",
+      "targetPage": "LoginPage",
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "input",
+      "sourceText": "输入手机号“13800000000”",
+      "targetText": "输入手机号“13800000000”",
+      "targetPage": null,
+      "value": "13800000000",
+      "expectation": null
+    },
+    {
+      "action": "input",
+      "sourceText": "输入密码“wrong_password”",
+      "targetText": "输入密码“wrong_password”",
+      "targetPage": null,
+      "value": "wrong_password",
+      "expectation": null
+    },
+    {
+      "action": "click",
+      "sourceText": "点击登录按钮",
+      "targetText": "点击登录按钮",
+      "targetPage": null,
+      "value": null,
+      "expectation": null
+    },
+    {
+      "action": "assert",
+      "sourceText": "验证第 3 次密码错误后展示图形验证码",
+      "targetText": "验证第 3 次密码错误后展示图形验证码",
+      "targetPage": null,
+      "value": null,
+      "expectation": "visible_or_success"
+    }
+  ],
+  "intermediateRepresentation": {
+    "caseId": "TC_LOGIN_001",
+    "title": "登录验证码边界",
+    "sourceText": "进入登录页，输入手机号“13800000000”，输入密码“wrong_password”，点击登录按钮，验证第 3 次密码错误后展示图形验证码。\n",
+    "preconditions": [],
+    "steps": [
+      {
+        "stepId": "S1",
+        "intent": "open_page",
+        "page": "HomePage",
+        "target": "LoginPage",
+        "targetName": null,
+        "locator": null,
+        "value": null,
+        "waitCondition": {
+          "page": "LoginPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_login"
+          }
+        },
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "进入登录页"
+      },
+      {
+        "stepId": "S2",
+        "intent": "input",
+        "page": "LoginPage",
+        "target": "PhoneInput",
+        "targetName": "手机号输入框",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "input_phone"
+        },
+        "value": "13800000000",
+        "waitCondition": null,
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "输入手机号“13800000000”"
+      },
+      {
+        "stepId": "S3",
+        "intent": "input",
+        "page": "LoginPage",
+        "target": "PasswordInput",
+        "targetName": "密码输入框",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "input_password"
+        },
+        "value": "wrong_password",
+        "waitCondition": null,
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "输入密码“wrong_password”"
+      },
+      {
+        "stepId": "S4",
+        "intent": "click",
+        "page": "LoginPage",
+        "target": "LoginButton",
+        "targetName": "登录按钮",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "btn_login"
+        },
+        "value": null,
+        "waitCondition": null,
+        "postAssert": null,
+        "timeout": 10000,
+        "sourceText": "点击登录按钮"
+      }
+    ],
+    "assertions": [
+      {
+        "assertionId": "A1",
+        "page": "LoginPage",
+        "target": "CaptchaImage",
+        "locator": {
+          "strategy": "accessibility_id",
+          "value": "captcha_image"
+        },
+        "type": "visible",
+        "expected": true,
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证第 3 次密码错误后展示图形验证码"
+      }
+    ],
+    "riskFlags": []
+  },
+  "agentInput": {
+    "agentTaskId": "AGENT_TC_LOGIN_001",
+    "name": "登录验证码边界",
+    "environment": {
+      "platform": "android",
+      "app": "target_app",
+      "resetBeforeRun": false
+    },
+    "executionPolicy": {
+      "stepTimeoutMs": 10000,
+      "caseTimeoutMs": 60000,
+      "retry": {
+        "maxRetry": 1,
+        "retryOn": [
+          "ELEMENT_NOT_FOUND",
+          "PAGE_LOAD_TIMEOUT",
+          "AGENT_RUNTIME_ERROR"
+        ]
+      },
+      "evidence": [
+        "screenshot_on_each_step",
+        "ui_tree_on_failure",
+        "screen_record"
+      ]
+    },
+    "steps": [
+      {
+        "id": "S1",
+        "action": "open_page",
+        "sourceText": "进入登录页",
+        "expect": {
+          "page": "LoginPage",
+          "visible": {
+            "strategy": "accessibility_id",
+            "value": "btn_login"
+          }
+        }
+      },
+      {
+        "id": "S2",
+        "action": "input",
+        "sourceText": "输入手机号“13800000000”",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "input_phone"
+        },
+        "value": "13800000000"
+      },
+      {
+        "id": "S3",
+        "action": "input",
+        "sourceText": "输入密码“wrong_password”",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "input_password"
+        },
+        "value": "wrong_password"
+      },
+      {
+        "id": "S4",
+        "action": "tap",
+        "sourceText": "点击登录按钮",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "btn_login"
+        }
+      },
+      {
+        "id": "A1",
+        "action": "assert",
+        "target": {
+          "strategy": "accessibility_id",
+          "value": "captcha_image"
+        },
+        "assertion": {
+          "type": "visible",
+          "expected": true
+        },
+        "evidence": [
+          "screenshot",
+          "ui_tree"
+        ],
+        "sourceText": "验证第 3 次密码错误后展示图形验证码"
+      }
+    ]
+  },
+  "summary": {
+    "intentCount": 5,
+    "irStepCount": 4,
+    "assertionCount": 1,
+    "riskCount": 0
+  },
+  "risks": []
+}

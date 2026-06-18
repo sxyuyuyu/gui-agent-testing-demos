@@ -1,0 +1,741 @@
+{
+  "prdId": "PRD_MEMBER_RENEW_001",
+  "title": "会员自动续费",
+  "generatedAt": "2026-06-18T18:03:26+08:00",
+  "summary": {
+    "featureCount": 5,
+    "testPointCount": 9,
+    "knowledgeHitCount": 8,
+    "riskCount": 1
+  },
+  "requirementModel": {
+    "prdId": "PRD_MEMBER_RENEW_001",
+    "title": "会员自动续费",
+    "rawText": "功能：会员自动续费\n用户可在会员购买页开启自动续费。开启后，系统在会员到期前 1 天自动扣费。\n如果扣费时余额不足，则续费失败，并在 24 小时后重试，最多重试 3 次。\n用户可在设置页取消自动续费。取消后不再发起自动扣费。\n支付回调可能重复到达，系统需要保证不会重复生成续费订单。",
+    "sections": [
+      {
+        "sectionId": "S1",
+        "title": "需求片段 1",
+        "text": "功能：会员自动续费"
+      },
+      {
+        "sectionId": "S2",
+        "title": "需求片段 2",
+        "text": "用户可在会员购买页开启自动续费"
+      },
+      {
+        "sectionId": "S3",
+        "title": "需求片段 3",
+        "text": "开启后，系统在会员到期前 1 天自动扣费"
+      },
+      {
+        "sectionId": "S4",
+        "title": "需求片段 4",
+        "text": "如果扣费时余额不足，则续费失败，并在 24 小时后重试，最多重试 3 次"
+      },
+      {
+        "sectionId": "S5",
+        "title": "需求片段 5",
+        "text": "用户可在设置页取消自动续费"
+      },
+      {
+        "sectionId": "S6",
+        "title": "需求片段 6",
+        "text": "取消后不再发起自动扣费"
+      },
+      {
+        "sectionId": "S7",
+        "title": "需求片段 7",
+        "text": "支付回调可能重复到达，系统需要保证不会重复生成续费订单"
+      }
+    ],
+    "features": [
+      "开启自动续费",
+      "取消自动续费",
+      "自动扣费",
+      "失败重试",
+      "支付回调幂等"
+    ],
+    "entities": [
+      "用户",
+      "会员",
+      "订单",
+      "支付方式",
+      "设置页",
+      "会员购买页"
+    ],
+    "rules": [
+      "开启后，系统在会员到期前 1 天自动扣费",
+      "如果扣费时余额不足，则续费失败，并在 24 小时后重试，最多重试 3 次",
+      "取消后不再发起自动扣费",
+      "支付回调可能重复到达，系统需要保证不会重复生成续费订单"
+    ],
+    "boundaries": [
+      "到期前 1 天",
+      "24 小时",
+      "3 次",
+      "1 天"
+    ],
+    "exceptions": [
+      "余额不足",
+      "重复回调"
+    ],
+    "keywords": [
+      "自动续费",
+      "开启自动续费",
+      "取消自动续费",
+      "自动扣费",
+      "会员",
+      "购买页",
+      "设置页",
+      "余额不足",
+      "支付回调",
+      "续费订单",
+      "到期前",
+      "24 小时",
+      "3 次",
+      "失败重试",
+      "支付回调幂等",
+      "到期前 1 天",
+      "1 天",
+      "重复回调"
+    ],
+    "expandedKeywords": [
+      "订阅续期",
+      "周期扣款",
+      "自动扣款",
+      "开启订阅",
+      "开启周期扣款",
+      "取消订阅",
+      "关闭自动扣款",
+      "扣费失败",
+      "支付失败",
+      "重复回调",
+      "回调幂等",
+      "重复扣费",
+      "重试间隔",
+      "重试上限"
+    ]
+  },
+  "retrievedKnowledge": [
+    {
+      "docId": "BUG_PAY_087",
+      "source": "历史缺陷库",
+      "title": "支付回调重复导致生成两笔续费订单",
+      "score": 0.7328,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.4508,
+        "defect": 1.0,
+        "rule": 0.25
+      },
+      "matchedKeywords": [
+        "会员",
+        "支付回调",
+        "续费订单",
+        "重复回调",
+        "重复扣费"
+      ],
+      "usableKnowledge": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次",
+      "testAngles": [
+        "幂等",
+        "重复回调",
+        "订单一致性",
+        "历史缺陷回归"
+      ]
+    },
+    {
+      "docId": "RULE_BOUNDARY_TIME_003",
+      "source": "边界值规则库",
+      "title": "时间边界测试设计",
+      "score": 0.6393,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.6124,
+        "defect": 0.0,
+        "rule": 0.75
+      },
+      "matchedKeywords": [
+        "到期前",
+        "24 小时",
+        "到期前 1 天",
+        "1 天"
+      ],
+      "usableKnowledge": "时间类规则需要覆盖边界前、边界点、边界后",
+      "testAngles": [
+        "边界值",
+        "时间模拟",
+        "任务触发"
+      ]
+    },
+    {
+      "docId": "BUG_REFUND_029",
+      "source": "历史缺陷库",
+      "title": "支付渠道重复回调导致重复退款",
+      "score": 0.6372,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.4064,
+        "defect": 0.6,
+        "rule": 0.25
+      },
+      "matchedKeywords": [
+        "重复回调",
+        "回调幂等"
+      ],
+      "usableKnowledge": "退款回调必须验证幂等，同一退款流水只能入账一次",
+      "testAngles": [
+        "回调幂等",
+        "资金安全",
+        "账务一致性"
+      ]
+    },
+    {
+      "docId": "CASE_AUTO_RENEW_001",
+      "source": "历史测试用例库",
+      "title": "自动续费开启与取消",
+      "score": 0.597,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.4915,
+        "defect": 0.0,
+        "rule": 0.75
+      },
+      "matchedKeywords": [
+        "自动续费",
+        "开启自动续费",
+        "取消自动续费",
+        "自动扣费",
+        "会员"
+      ],
+      "usableKnowledge": "需要覆盖开启后状态展示、取消后不再扣费、重新进入页面状态保留",
+      "testAngles": [
+        "正向功能",
+        "状态展示",
+        "状态流转",
+        "取消后不扣费"
+      ]
+    },
+    {
+      "docId": "RULE_RETRY_002",
+      "source": "业务规则库",
+      "title": "失败重试次数上限",
+      "score": 0.5808,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.5167,
+        "defect": 0.0,
+        "rule": 0.5
+      },
+      "matchedKeywords": [
+        "3 次",
+        "失败重试",
+        "重试间隔",
+        "重试上限"
+      ],
+      "usableKnowledge": "失败后需要验证重试次数、重试间隔、超过上限后的最终状态",
+      "testAngles": [
+        "异常恢复",
+        "次数边界",
+        "最终状态"
+      ]
+    },
+    {
+      "docId": "BUG_COUPON_037",
+      "source": "历史缺陷库",
+      "title": "支付失败后优惠券未释放",
+      "score": 0.574,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.5256,
+        "defect": 0.2,
+        "rule": 0.0
+      },
+      "matchedKeywords": [
+        "支付失败"
+      ],
+      "usableKnowledge": "支付失败或订单取消后必须释放已锁定优惠券",
+      "testAngles": [
+        "异常恢复",
+        "状态回滚",
+        "订单失败"
+      ]
+    },
+    {
+      "docId": "BUG_LOGIN_011",
+      "source": "历史缺陷库",
+      "title": "第 3 次密码错误未展示图形验证码",
+      "score": 0.518,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.2942,
+        "defect": 0.2,
+        "rule": 0.25
+      },
+      "matchedKeywords": [
+        "3 次"
+      ],
+      "usableKnowledge": "密码错误次数阈值必须覆盖第 2 次、第 3 次、第 5 次",
+      "testAngles": [
+        "次数边界",
+        "安全",
+        "验证码"
+      ]
+    },
+    {
+      "docId": "CHECKLIST_PAY_001",
+      "source": "专项测试 Checklist",
+      "title": "支付类功能测试 Checklist",
+      "score": 0.4954,
+      "scoreDetail": {
+        "keyword": 1.0,
+        "vector": 0.344,
+        "defect": 0.0,
+        "rule": 0.25
+      },
+      "matchedKeywords": [
+        "余额不足",
+        "扣费失败",
+        "支付失败",
+        "回调幂等"
+      ],
+      "usableKnowledge": "支付场景需要覆盖余额不足、重复提交、回调幂等、资金流和订单状态一致性",
+      "testAngles": [
+        "支付成功",
+        "支付失败",
+        "数据一致性",
+        "幂等",
+        "资金安全"
+      ]
+    }
+  ],
+  "testPoints": [
+    {
+      "id": "TP_001",
+      "title": "用户可成功开启自动续费",
+      "type": "functional",
+      "priority": "P0",
+      "feature": "开启自动续费",
+      "requirementRef": {
+        "sectionId": "S2",
+        "text": "用户可在会员购买页开启自动续费"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户已登录",
+        "用户未开启自动续费"
+      ],
+      "steps": [
+        "进入会员购买页",
+        "开启自动续费",
+        "查看开启结果"
+      ],
+      "expectedResults": [
+        "自动续费开启成功",
+        "页面展示自动续费已开启",
+        "后台订阅状态为已开启"
+      ],
+      "testData": [
+        "普通会员账号"
+      ],
+      "tags": [
+        "正向",
+        "会员",
+        "状态展示"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "TP_002",
+      "title": "会员到期前 1 天自动扣费成功",
+      "type": "boundary",
+      "priority": "P0",
+      "feature": "自动扣费",
+      "requirementRef": {
+        "sectionId": "S3",
+        "text": "开启后，系统在会员到期前 1 天自动扣费"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户已开启自动续费",
+        "支付方式可用",
+        "会员将在 1 天后到期"
+      ],
+      "steps": [
+        "构造会员到期前 1 天状态",
+        "触发自动扣费任务",
+        "查询扣费结果和会员有效期"
+      ],
+      "expectedResults": [
+        "扣费成功",
+        "生成一笔续费订单",
+        "会员有效期正确延长"
+      ],
+      "testData": [
+        "余额充足账号",
+        "到期前 1 天会员"
+      ],
+      "tags": [
+        "边界值",
+        "自动扣费",
+        "订单"
+      ],
+      "confidence": 0.93
+    },
+    {
+      "id": "TP_003",
+      "title": "未到扣费时间不应提前扣费",
+      "type": "boundary",
+      "priority": "P1",
+      "feature": "自动扣费",
+      "requirementRef": {
+        "sectionId": "S3",
+        "text": "开启后，系统在会员到期前 1 天自动扣费"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户已开启自动续费",
+        "会员将在 2 天后到期"
+      ],
+      "steps": [
+        "构造会员到期前 2 天状态",
+        "触发自动扣费任务",
+        "查询订单和扣费记录"
+      ],
+      "expectedResults": [
+        "系统不发起自动扣费",
+        "不生成续费订单",
+        "会员有效期不变化"
+      ],
+      "testData": [
+        "到期前 2 天会员"
+      ],
+      "tags": [
+        "边界值",
+        "防提前扣费"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "TP_004",
+      "title": "余额不足时续费失败并记录失败状态",
+      "type": "exception",
+      "priority": "P0",
+      "feature": "失败重试",
+      "requirementRef": {
+        "sectionId": "S4",
+        "text": "如果扣费时余额不足，则续费失败，并在 24 小时后重试，最多重试 3 次"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户已开启自动续费",
+        "会员到期前 1 天",
+        "账户余额不足"
+      ],
+      "steps": [
+        "触发自动扣费任务",
+        "查询扣费结果",
+        "查询会员状态"
+      ],
+      "expectedResults": [
+        "扣费失败",
+        "不延长会员有效期",
+        "记录失败原因余额不足",
+        "生成待重试记录"
+      ],
+      "testData": [
+        "余额不足账号"
+      ],
+      "tags": [
+        "异常",
+        "余额不足",
+        "失败状态"
+      ],
+      "confidence": 0.94
+    },
+    {
+      "id": "TP_005",
+      "title": "扣费失败后 24 小时触发重试",
+      "type": "boundary",
+      "priority": "P0",
+      "feature": "失败重试",
+      "requirementRef": {
+        "sectionId": "S4",
+        "text": "如果扣费时余额不足，则续费失败，并在 24 小时后重试，最多重试 3 次"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户自动续费扣费失败",
+        "存在待重试记录"
+      ],
+      "steps": [
+        "构造失败后未满 24 小时状态",
+        "验证不会重试",
+        "构造失败后满 24 小时状态",
+        "触发重试任务"
+      ],
+      "expectedResults": [
+        "未满 24 小时时不重试",
+        "满 24 小时后发起重试",
+        "重试结果被正确记录"
+      ],
+      "testData": [
+        "扣费失败记录",
+        "时间模拟能力"
+      ],
+      "tags": [
+        "边界值",
+        "24小时",
+        "重试"
+      ],
+      "confidence": 0.91
+    },
+    {
+      "id": "TP_006",
+      "title": "最多只重试 3 次",
+      "type": "boundary",
+      "priority": "P0",
+      "feature": "失败重试",
+      "requirementRef": {
+        "sectionId": "S4",
+        "text": "如果扣费时余额不足，则续费失败，并在 24 小时后重试，最多重试 3 次"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户自动续费连续失败",
+        "存在重试记录"
+      ],
+      "steps": [
+        "构造连续 3 次扣费失败",
+        "继续推进时间",
+        "再次触发重试任务"
+      ],
+      "expectedResults": [
+        "系统最多发起 3 次重试",
+        "第 4 次不再发起扣费",
+        "最终状态标记为续费失败"
+      ],
+      "testData": [
+        "连续扣费失败账号"
+      ],
+      "tags": [
+        "边界值",
+        "次数限制",
+        "重试上限"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "id": "TP_007",
+      "title": "用户取消自动续费后不再自动扣费",
+      "type": "functional",
+      "priority": "P0",
+      "feature": "取消自动续费",
+      "requirementRef": {
+        "sectionId": "S5",
+        "text": "用户可在设置页取消自动续费"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户已开启自动续费"
+      ],
+      "steps": [
+        "进入设置页",
+        "取消自动续费",
+        "构造会员到期前 1 天状态",
+        "触发自动扣费任务"
+      ],
+      "expectedResults": [
+        "自动续费状态为已关闭",
+        "系统不发起扣费",
+        "不生成续费订单"
+      ],
+      "testData": [
+        "已开启自动续费账号"
+      ],
+      "tags": [
+        "取消",
+        "防扣费",
+        "状态流转"
+      ],
+      "confidence": 0.96
+    },
+    {
+      "id": "TP_008",
+      "title": "重复支付回调不会生成重复续费订单",
+      "type": "idempotency",
+      "priority": "P0",
+      "feature": "支付回调幂等",
+      "requirementRef": {
+        "sectionId": "S7",
+        "text": "支付回调可能重复到达，系统需要保证不会重复生成续费订单"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户自动续费扣费成功",
+        "存在同一支付流水号"
+      ],
+      "steps": [
+        "模拟支付成功回调",
+        "再次发送相同支付流水号的回调",
+        "查询续费订单和扣费记录"
+      ],
+      "expectedResults": [
+        "只生成一笔续费订单",
+        "只延长一次会员有效期",
+        "重复回调返回幂等成功或已处理"
+      ],
+      "testData": [
+        "相同支付流水号",
+        "支付回调模拟器"
+      ],
+      "tags": [
+        "幂等",
+        "重复回调",
+        "历史缺陷"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "id": "TP_009",
+      "title": "自动续费状态流转正确",
+      "type": "state_transition",
+      "priority": "P1",
+      "feature": "自动续费状态",
+      "requirementRef": {
+        "sectionId": "S1",
+        "text": "功能：会员自动续费"
+      },
+      "knowledgeRefs": [
+        {
+          "docId": "BUG_PAY_087",
+          "source": "历史缺陷库",
+          "reason": "重复回调场景必须验证订单幂等、扣费幂等和会员有效期只延长一次"
+        },
+        {
+          "docId": "RULE_BOUNDARY_TIME_003",
+          "source": "边界值规则库",
+          "reason": "时间类规则需要覆盖边界前、边界点、边界后"
+        }
+      ],
+      "preconditions": [
+        "用户已登录"
+      ],
+      "steps": [
+        "从未开启状态开启自动续费",
+        "验证状态变为已开启",
+        "取消自动续费",
+        "验证状态变为已关闭",
+        "重新进入页面验证状态保留"
+      ],
+      "expectedResults": [
+        "状态按未开启 -> 已开启 -> 已关闭流转",
+        "页面展示与后台状态一致",
+        "重新进入页面后状态保持正确"
+      ],
+      "testData": [
+        "普通会员账号"
+      ],
+      "tags": [
+        "状态流转",
+        "前后端一致性"
+      ],
+      "confidence": 0.89
+    }
+  ],
+  "risks": [
+    {
+      "type": "missing_rule",
+      "description": "PRD 未明确重试 3 次全部失败后的用户通知和状态展示",
+      "suggestion": "建议补充最终失败后的通知、前端展示、后台状态和是否可人工重试"
+    }
+  ]
+}
