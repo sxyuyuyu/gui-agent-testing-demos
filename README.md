@@ -7,7 +7,7 @@
 
 两个工程均使用 Python 标准库实现，不依赖第三方包，适合直接下载、运行和阅读源码。
 
-## 项目一：自然语言手工用例转 GUI Agent 可执行用例
+## 考题二：自然语言手工用例转 GUI Agent 可执行用例
 
 目录：
 
@@ -44,7 +44,7 @@ manual-case-to-agent-demo/output/notification_switch_persist.json
 manual-case-to-agent-demo/README.md
 ```
 
-## 项目二：基于 PRD 召回知识库生成测试点
+## 考题四：基于 PRD 召回知识库生成测试点
 
 目录：
 
