@@ -103,8 +103,6 @@ Code -> Download ZIP
 .
 ├── manual-case-to-agent-demo/
 ├── prd-testpoint-agent-demo/
-├── 考题二-自然语言手工用例到Agent可执行用例的转换方案.md
-├── 考题四-基于PRD召回知识库生成测试点.md
 └── README.md
 ```
 
